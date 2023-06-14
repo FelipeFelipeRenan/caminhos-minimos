@@ -1,17 +1,17 @@
 def bellman_ford(grafo, escolhido):
-    # Inicializando as distâncias dos vértices como infinito
+    # inicializando as distâncias dos vértices como infinito
     distancias = {vertice: float('inf') for vertice in grafo}
-    # Definindo a distância do vértice de origem como 0
+    # definindo a distância do vértice de origem como 0
     distancias[escolhido] = 0
 
-    # Relaxamento das arestas
+    # relaxamento das arestas
     for _ in range(len(grafo) - 1):
         for vertice in grafo:
             for vizinho, peso in grafo[vertice]:
                 if distancias[vertice] + peso < distancias[vizinho]:
                     distancias[vizinho] = distancias[vertice] + peso
 
-    # Verificando se há ciclos negativos
+    # verificando se há ciclos negativos
     for vertice in grafo:
         for vizinho, peso in grafo[vertice]:
             if distancias[vertice] + peso < distancias[vizinho]:
@@ -19,6 +19,7 @@ def bellman_ford(grafo, escolhido):
 
     return distancias
 
+# representado o grafo como um dicionario
 grafo = {
     'A': [('B', -1), ('C',  4)],
     'B': [('C',  3), ('D',  2), ('E',  2)],
